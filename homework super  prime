@@ -1,0 +1,36 @@
+#include <stdio.h>
+#include <math.h>
+int IsPrime(int x)
+{
+	int i,t=1;
+	for(i=2;i<=sqrt(x);i++){
+		if(x%i==0){
+			t=0;break;
+		}
+	}
+	return t;
+}
+int main()
+{
+	int x,y,num[4],i,s1,s2,a=0;
+	float p=0;
+	for(x=101;x<=9997;x=x+2){
+		s1=0;s2=0;
+		y=x;
+		for(i=0;i<4;i++){
+			num[i]=y%10;
+			y=y/10;
+		}
+		for(i=0;i<4;i++){
+			s1+=num[i];
+		}
+		for(i=0;i<4;i++){
+			s2+=num[i]*num[i];
+		}
+		if(IsPrime(x)==1&&IsPrime(s1)==1&&IsPrime(s2)==1){
+			printf("%d ",x);p=p+x;a++;
+		}
+	}
+	printf("\n平均数=%f",p/a);
+	return 0;
+}
