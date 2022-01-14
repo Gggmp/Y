@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdbool.h>
+char str[1000010]; 
+bool isnum(char ch){return '0'<=ch&&ch<='9';}
+int main(int argc, char *argv[]) {
+	freopen("main.in","r",stdin);
+	int x,y,a,b,i=0,n,aout,bout,minsub=2147483647,sub=0;
+	scanf("%s %d %d",str,&x,&y);
+	n=strlen(str);
+	str[n]='.',str[++n]='\0';
+	while(str[i]!='\0'){
+		a=b=0;
+		while(isnum(str[i])){
+			a=a*10+str[i]-'0';
+			i++;
+		}
+		i++;
+		while(isnum(str[i])){
+			b=b*10+str[i]-'0';
+			i++;
+		}
+		i++;
+		sub=x*y-a*b;
+		if(sub<0)sub=-sub;
+		if(sub<minsub){
+			minsub=sub;
+			aout=a,bout=b;
+		}
+	}
+	printf("%dx%d",aout,bout);
+	return 0;
+}
